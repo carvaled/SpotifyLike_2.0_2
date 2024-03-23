@@ -9,5 +9,6 @@ namespace SpotifyLike.Domain.Transacao.ValueObject
     public record Merchant
     {
         public string Nome { get; set; }
+        public string Cnpj { get; set; }
     }
 }
