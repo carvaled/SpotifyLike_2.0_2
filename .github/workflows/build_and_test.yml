@@ -1,4 +1,4 @@
-name: Build amd Test
+name: Build ad Test
 on:
   workflow_call:
 
@@ -6,15 +6,11 @@ on:
     branches:
       - master
       - develop
-    paths:
-      - SpotifyLike.Api/** 
       
   pull_request:
     types: [opened, synchronize, reopened]
     branches:       
       - master
-    paths:
-      - SpotifyLike.Api/** 
 
 permissions:
     contents: read 
