@@ -1,0 +1,58 @@
+name: Build amd Test
+on:
+  workflow_call:
+
+  push:
+    branches:
+      - master
+      - develop
+    paths:
+      - SpotifyLike.Api/** 
+      
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:       
+      - master
+    paths:
+      - SpotifyLike.Api/** 
+
+permissions:
+    contents: read 
+
+jobs:
+  build_and_test_net:
+    name: Build and Test .Net App
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Cache .NET packages    
+      uses: actions/cache@v3
+      id: dotnet-cache
+      with:
+        path: ~/.nuget/packages
+        key: dotnet-packages-${{ github.repository }}
+        restore-keys: dotnet-packages-${{ github.repository }}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      if: steps.dotnet-cache.outputs.cache-hit != 'true'
+      with:
+        dotnet-version: 8.0.x
+    
+    - name: Build and Restore App 
+      run: dotnet build  ./SpotifyLike.Api/SpotifyLike.Api.csproj --restore
+      continue-on-error: false
+
+    - name: Test .Net App
+      run: | 
+          dotnet tool install -g dotnet-reportgenerator-globaltool 
+          dotnet test ./SpotifyLike.Tests/SpotifyLike.Tests.csproj
+      continue-on-error: false
+ 
+
+  trigger_tests_sonarcloud:
+    needs: build_and_test_net
+    name: Triggered Sonar Cloud Test
+    uses: carvaled/SpotifyLike_2.0_2/tree/master/.github/workflows/sonar_cloud_test.yml@master
+    secrets: inherit
