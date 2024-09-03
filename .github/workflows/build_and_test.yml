@@ -54,5 +54,5 @@ jobs:
   trigger_tests_sonarcloud:
     needs: build_and_test_net
     name: Triggered Sonar Cloud Test
-    uses: carvaled/SpotifyLike_2.0_2/tree/master/.github/workflows/sonar_cloud_test.yml@master
+    uses: carvaled/SpotifyLike_2.0_2/.github/workflows/sonar_cloud_test.yml@master
     secrets: inherit
