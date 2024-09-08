@@ -2,49 +2,44 @@
 using Spotify.Application.Streaming.Dto;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spotify.Application.Streaming
 {
     public class BandaService
     {
-        private BandaRepository BandaRepository { get; set; }
+        private BandaRepository Repository { get; set; }
         private IMapper Mapper { get; set; }
 
 
         public BandaService(BandaRepository bandaRepository, IMapper mapper)
         {
-            BandaRepository = bandaRepository;
+            Repository = bandaRepository;
             Mapper = mapper;
         }
 
         public BandaDto Criar(BandaDto dto)
         {
             Banda banda = this.Mapper.Map<Banda>(dto);
-            this.BandaRepository.Save(banda);
+            this.Repository.Save(banda);
 
             return this.Mapper.Map<BandaDto>(banda);
         }
 
         public BandaDto Obter(Guid id)
         {
-            var banda = this.BandaRepository.GetById(id);
+            var banda = this.Repository.GetById(id);
             return this.Mapper.Map<BandaDto>(banda);
         }
 
         public IEnumerable<BandaDto> Obter()
         {
-            var banda = this.BandaRepository.GetAll();
+            var banda = this.Repository.GetAll();
             return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
         }
 
         public AlbumDto AssociarAlbum(AlbumDto dto)
         {
-            var banda = this.BandaRepository.GetById(dto.BandaId);
+            var banda = this.Repository.GetById(dto.BandaId);
 
             if (banda == null)
             {
@@ -55,7 +50,7 @@ namespace Spotify.Application.Streaming
 
             banda.AdicionarAlbum(novoAlbum);
 
-            this.BandaRepository.Update(banda);
+            this.Repository.Update(banda);
 
             var result = this.AlbumParaAlbumDto(novoAlbum);
 
@@ -65,7 +60,7 @@ namespace Spotify.Application.Streaming
 
         public AlbumDto ObterAlbum(Guid idBanda, Guid id)
         {
-            var banda = this.BandaRepository.GetById(idBanda);
+            var banda = this.Repository.GetById(idBanda);
 
             if (banda == null)
             {
@@ -88,7 +83,7 @@ namespace Spotify.Application.Streaming
                 Nome = dto.Nome
             };
 
-            foreach (MusicDto item in dto.Musicas)
+            foreach (MusicaDto item in dto.Musicas)
             {
                 album.AdicionarMusica(new Musica
                 {
@@ -108,7 +103,7 @@ namespace Spotify.Application.Streaming
 
             foreach (var item in album.Musica)
             {
-                var musicaDto = new MusicDto()
+                var musicaDto = new MusicaDto()
                 {
                     Id = item.Id,
                     Duracao = item.Duracao.Valor,
@@ -121,7 +116,38 @@ namespace Spotify.Application.Streaming
             return dto;
         }
 
+        public BandaDto FindById(Guid id)
+        {
+            var banda = this.Repository.GetById(id);
+            var result = this.Mapper.Map<BandaDto>(banda);
+            return result;
+        }
 
+        public IEnumerable<BandaDto> FindAll(Guid userId)
+        {
+            var bandas = this.Repository.GetAll().Where(c => c.Id == userId).ToList();
+            var result = this.Mapper.Map<IEnumerable<BandaDto>>(bandas);
+            return result;
+        }
 
+        public IEnumerable<BandaDto> FindAll()
+        {
+            var result = this.Mapper.Map<IEnumerable<BandaDto>>(this.Repository.GetAll());
+            return result;
+        }
+
+        public BandaDto Update(BandaDto dto)
+        {
+            var banda = this.Mapper.Map<Banda>(dto);
+            this.Repository.Update(banda);
+            return this.Mapper.Map<BandaDto>(banda);
+        }
+
+        public bool Delete(BandaDto dto)
+        {
+            var banda = this.Mapper.Map<Banda>(dto);
+            this.Repository.Delete(banda);
+            return true;
+        }
     }
 }

@@ -1,0 +1,11 @@
+<p>
+  <mat-toolbar color="primary">
+    <a href="home">Spotify Lite </a>
+    - Seja Bem-vindo {{userName ? userName : 'Visitante'}}  
+    <a *ngIf="!userName" href="login"> Realizar Login</a>
+    <button *ngIf="userName" (click)="logout()">Sair</button>
+  </mat-toolbar>
+</p>
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SpotifyLike.Domain.Conta.Agreggates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SpotifyLike.Domain.Conta.Agreggates;
 
 namespace SpotifyLike.Repository.Repository
 {
@@ -18,15 +11,11 @@ namespace SpotifyLike.Repository.Repository
             Context = context;
         }
 
-        //public Usuario GetById(Guid id)
-        //{
-        //    return this.Context.Usuarios
-        //               .Include(x => x.Assinaturas) //Caso não esteja usando lazy loading
-        //               .Include(x => x.Playlists)
-        //               .Include(x => x.Notificacoes)
-        //               //.AsSplitQuery() //Quebra a consulta por cada tipo
-        //               .FirstOrDefault(x => x.Id == id);
-        //}
+        public Usuario GetById(Guid id)
+        {
+            return this.Context.Usuarios
+                       .FirstOrDefault(x => x.Id == id);
+        }
 
 
     }

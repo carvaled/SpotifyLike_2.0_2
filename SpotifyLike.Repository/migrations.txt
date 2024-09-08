@@ -1,0 +1,13 @@
+# Configurações de Conecção com o banco de dados 
+	Server Name = (LocalDB)\MSSQLLocalDB
+	Windows Autentication 
+	Encryption = Mandatory -> Trusted Server Certificate
+
+# Comandos Ef API 
+dotnet ef migrations add Initial -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api -o Migrations.Api
+dotnet ef database update -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
+
+
+# Comandos Ef App MVC Admininistrativa  
+dotnet ef migrations add Initial -c SpotifyLikeContextAdmin -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Admin -o Migrations.Admin
+dotnet ef database update -c SpotifyLikeContextAdmin -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Admin
