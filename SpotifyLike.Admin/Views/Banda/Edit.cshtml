@@ -1,0 +1,36 @@
+﻿@using Spotify.Application.Streaming.Dto
+@model BandaDto
+<button type="button" class="btn btn-primary mb-2" role="button" onclick="backHistory()">
+    <i class="bi bi-arrow-return-left">Voltar</i>
+</button>
+<div class="d-flex flex-column align-items-stretch m-0 p-2 border border-2 border-dark bg-dark rounded-2 align-items-center justify-content-center text-light">
+    <form method="post" asp-controller="Banda" asp-action="Update">
+        @Html.TextBoxFor(account => account.Id, new { @class = "form-control", @id = "id", @Type = "hidden", @required = "" })
+        <div class="row mb-3">
+            <label for="name" class="col-1 col-form-label fs-5 text-end">Nome</label>
+            <div class="col">
+                @Html.TextBoxFor(band => band.Nome, new { @class = "form-control", @id = "name", @required = "" })
+                <span class="badge bg-secondary bg-opacity-50 text-danger" asp-validation-for="Nome"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="description" class="col-1 col-form-label fs-5 text-end">Descrição</label>
+            <div class="col">
+                @Html.TextAreaFor(band => band.Descricao, new { @class = "form-control ", @id = "description", @required = "", @type= "textarea" })
+                <span class="badge bg-secondary bg-opacity-50 text-danger" asp-validation-for="Descricao"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="backdrop" class="col-1 col-form-label fs-5 text-end">Backdrop</label>
+            <div class="col">
+                @Html.TextBoxFor(band => band.Backdrop, new { @class = "form-control ", @id = "backdrop", @required = "" })
+                <span class="badge bg-secondary bg-opacity-50 text-danger" asp-validation-for="Backdrop"></span>
+            </div>
+        </div>
+        <div class="row mb-3  d-flex align-items-center justify-content-center ">
+            <button type="submit" class="btn btn-primary w-25 fs-4">
+                <i class="bi bi-save">Salvar</i>
+            </button>
+        </div>
+    </form>
+</div>

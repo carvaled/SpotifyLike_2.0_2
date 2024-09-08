@@ -1,16 +1,9 @@
 ﻿using SpotifyLike.Domain.Core.ValueObject;
-using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
 using SpotifyLike.Domain.Transacao.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace SpotifyLike.Domain.Conta.Agreggates
 {

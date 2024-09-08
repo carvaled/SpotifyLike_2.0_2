@@ -3,6 +3,11 @@
 	Windows Autentication 
 	Encryption = Mandatory -> Trusted Server Certificate
 
-# Comando Ef para criaar base de dados 
+# Comandos Ef API 
+dotnet ef migrations add Initial  -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
 dotnet ef database update -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
 
+
+# Comandos Ef App MVC Admininistrativa  
+dotnet ef migrations add Initial -c SpotifyLikeContextAdmin -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Admin -o Migrations.Admin
+dotnet ef database update -c SpotifyLikeContextAdmin -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Admin

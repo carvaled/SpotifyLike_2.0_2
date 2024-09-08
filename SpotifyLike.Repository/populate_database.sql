@@ -1,8 +1,8 @@
 -- Create Usuarios
 INSERT INTO [SpotifyDatabase].[dbo].[Usuario] ([Id], [Nome], [Email], [Senha], [DtNascimento])
 VALUES
-    (NEWID(), 'João Silva', 'joao.silva@example.com', '123', '1990-01-15'),
-    (NEWID(), 'Maria Oliveira', 'maria.oliveira@example.com', '123', '1985-05-22');
+    (NEWID(), 'João Silva', 'joao@user.com', '123', '1990-01-15'),
+    (NEWID(), 'Maria Oliveira', 'maria@user.com', '123', '1985-05-22');
 
 -- Create Banda
 DECLARE @BandaId1 UNIQUEIDENTIFIER = NEWID();
@@ -44,3 +44,15 @@ VALUES
     (NEWID(), 'Pop Hit', 40, @AlbumId2),
     (NEWID(), 'Smooth Jazz', 55, @AlbumId3),
     (NEWID(), 'Electronic Groove', 30, @AlbumId4);
+
+
+
+
+-- Inserir conta com perfil Admin
+INSERT INTO [SpotifyDatabase].[dbo].[ContaAdmin] ([Id], [Nome], [Email], [Senha], [PerfilTypeId], [DataCricao])
+VALUES (NEWID(), 'Admin User', 'user@admin.com', '123', 1, GETDATE());
+
+-- Inserir conta com perfil Normal
+INSERT INTO [dbo].[ContaAdmin] ([Id], [Nome], [Email], [Senha], [PerfilTypeId], [DataCricao]) 
+VALUES (NEWID(), 'Normal User', 'user@normal.com', '123', 2, GETDATE());
+

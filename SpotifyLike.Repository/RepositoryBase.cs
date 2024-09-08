@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyLike.Repository
 {
     public abstract class RepositoryBase<T> where T : class, new()
     {
-        protected SpotifyLikeContext Context { get; set; }
+        protected DbContext Context { get; set; }
 
-        public RepositoryBase(SpotifyLikeContext context)
+        public RepositoryBase(DbContext context)
         {
             Context = context;
         }
 
-        public void Save(T entity) 
+        public virtual void Save(T entity) 
         { 
             this.Context.Add(entity);
             this.Context.SaveChanges(); 
         }
 
-        public void Update(T entity) 
+        public virtual void Update(T entity) 
         {
             this.Context.Update(entity);
             this.Context.SaveChanges();
