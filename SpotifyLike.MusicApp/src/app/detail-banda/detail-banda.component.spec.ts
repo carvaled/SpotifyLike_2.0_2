@@ -10,8 +10,8 @@ describe('DetailBandaComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DetailBandaComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DetailBandaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

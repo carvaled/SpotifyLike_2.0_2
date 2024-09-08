@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spotify.Application.Streaming;
 using Spotify.Application.Streaming.Dto;
-using SpotifyLike.Domain.Streaming.Aggregates;
-using SpotifyLike.Repository;
 
 namespace SpotifyLike.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BandaController : ControllerBase
     {
         private BandaService _bandaService;

@@ -1,0 +1,8 @@
+# Configurações de Conecção com o banco de dados 
+	Server Name = (LocalDB)\MSSQLLocalDB
+	Windows Autentication 
+	Encryption = Mandatory -> Trusted Server Certificate
+
+# Comando Ef para criaar base de dados 
+dotnet ef database update -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
+
