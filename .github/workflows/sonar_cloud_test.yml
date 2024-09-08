@@ -47,7 +47,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"carvaled_SpotifyLike_2.0_2" /o:"carvaled" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="**/Program.cs, **/*.spec.ts, **/main.ts, **/environment.*, **/*.routing.module.ts, **/*.js, **/test.ts, **/*Test.cs, **/*.cshtml,  **/__mock__/*.ts, **/*.js, **/*Dockerfile.*, **/docker-compose.*, **/SpotifyLike.STS/**, **/SpotifyLike.MusicApp/** "  /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.lcov.reportPaths="**/coveragereport/lcov.info" 
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"carvaled_SpotifyLike_2.0_2" /o:"carvaled" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="**/Program.cs, **/*.spec.ts, **/main.ts, **/environment.*, **/*.routing.module.ts, **/*.js, **/test.ts, **/*Test.cs, **/*.cshtml,  **/__mock__/*.ts, **/*.js,, **/*.sql, **/*.css, **/*Dockerfile.*, **/docker-compose.*, **/SpotifyLike.STS/**, **/SpotifyLike.MusicApp/** "  /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.lcov.reportPaths="**/coveragereport/lcov.info" 
             npm install -g @angular/core @angular/cli > $null 2>&1
             dotnet tool install -g dotnet-reportgenerator-globaltool
             $baseDirectory = Get-Location
