@@ -2,12 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpotifyLike.Domain.Core.ValueObject;
 using SpotifyLike.Domain.Streaming.Aggregates;
-using SpotifyLike.Domain.Streaming.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyLike.Repository.Mapping.Streaming
 {
@@ -26,8 +20,6 @@ namespace SpotifyLike.Repository.Mapping.Streaming
             {
                 c.Property(x => x.Valor).IsRequired();
             });
-
-
         }
     }
 }

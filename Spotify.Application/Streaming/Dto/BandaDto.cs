@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Spotify.Application.Streaming.Dto
 {
@@ -12,13 +7,13 @@ namespace Spotify.Application.Streaming.Dto
         public Guid Id { get; set; }
 
 
-        [Required]
-        public String Nome { get; set; }
+        [Required(ErrorMessage = "O campo Nome é obrigatório.")]
+        public String? Nome { get; set; }
 
-        [Required]
-        public String Descricao { get; set; }
-        
-        public String Backdrop { get; set; }
+        [Required(ErrorMessage = "O campo Descrição é obrigatório.")]
+        public String? Descricao { get; set; }        
+
+        public String? Backdrop { get; set; }
 
     }
 }

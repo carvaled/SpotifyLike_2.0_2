@@ -1,10 +1,4 @@
-﻿using SpotifyLike.Domain.Streaming.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Spotify.Application.Streaming.Dto
 {
@@ -15,18 +9,9 @@ namespace Spotify.Application.Streaming.Dto
         [Required]
         public Guid BandaId { get; set; }
 
-        [Required]
-        public string Nome { get; set; }
-        public List<MusicDto> Musicas { get; set; } = new List<MusicDto>();
-
-    }
-
-
-    public class MusicDto
-    {
-        public Guid Id { get; set; }
-        public String Nome { get; set; }
-        public int Duracao { get; set; }
-
+        [Required(ErrorMessage = "O campo Nome é obrigatório.")]
+        public string? Nome { get; set; }
+        public string? Backdrop { get; set; }
+        public List<MusicaDto> Musicas { get; set; } = new List<MusicaDto>();
     }
 }

@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SpotifyLike.Repository.Migrations
+namespace SpotifyLike.Repository.Migrations.Api
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,6 +60,7 @@ namespace SpotifyLike.Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Backdrop = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     BandaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -175,6 +176,7 @@ namespace SpotifyLike.Repository.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Duracao_Valor = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AlbumId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -197,6 +199,7 @@ namespace SpotifyLike.Repository.Migrations
                     ValorTransacao = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MerchantNome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Merchant_Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CartaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>

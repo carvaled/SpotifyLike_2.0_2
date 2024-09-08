@@ -4,12 +4,10 @@ using SpotifyLike.Domain.Conta.Agreggates;
 using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
+using SpotifyLike.Repository.Mapping.Conta;
+using SpotifyLike.Repository.Mapping.Notificacao;
 using SpotifyLike.Repository.Mapping.Streaming;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SpotifyLike.Repository.Mapping.Transacao;
 
 namespace SpotifyLike.Repository
 {
@@ -26,16 +24,22 @@ namespace SpotifyLike.Repository
         public DbSet<Musica> Musicas { get; set; }
         public DbSet<Plano> Planos { get; set; }
 
-        public SpotifyLikeContext(DbContextOptions<SpotifyLikeContext> options) : base(options)
-        {
-
-        }
+        public SpotifyLikeContext(DbContextOptions<SpotifyLikeContext> options) : base(options) { }
 
 
         //Escrever protected internal e vai aparecer OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(SpotifyLikeContext).Assembly);
+            modelBuilder.ApplyConfiguration(new AssinaturaMapping());
+            modelBuilder.ApplyConfiguration(new PlaylistMapping());
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+            modelBuilder.ApplyConfiguration(new NotificacaoMapping());
+            modelBuilder.ApplyConfiguration(new AlbumMapping());
+            modelBuilder.ApplyConfiguration(new BandaMapping());
+            modelBuilder.ApplyConfiguration(new MusicaMapping());
+            modelBuilder.ApplyConfiguration(new PlanoMapping());
+            modelBuilder.ApplyConfiguration(new CartaoMapping());
+            modelBuilder.ApplyConfiguration(new TransacaoMapping());
             base.OnModelCreating(modelBuilder);
         }
 
