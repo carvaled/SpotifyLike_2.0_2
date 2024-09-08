@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spotify.Application.Conta;
 using Spotify.Application.Conta.Dto;
-using SpotifyLike.Domain.Conta.Agreggates;
 
 namespace SpotifyLike.Api.Controllers
 {
@@ -18,6 +17,7 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Criar(UsuarioDto dto)
         {
             if (ModelState is { IsValid: false})
@@ -30,6 +30,7 @@ namespace SpotifyLike.Api.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult Obter(Guid id)
         {
             var result = this._usuarioService.Obter(id);
