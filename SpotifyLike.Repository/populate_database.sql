@@ -18,41 +18,30 @@ VALUES
     (@BandaId4, 'Electronic Beats', 'Música eletrônica inovadora.', 'backdrop_electronicbeats.jpg');
 
 -- Create Albuns
-INSERT INTO [SpotifyDatabase].[dbo].[Album] ([Id], [Nome], [BandaId])
-VALUES
-    (NEWID(), 'Rock Greatest Hits', @BandaId1),
-    (NEWID(), 'Pop Sensations', @BandaId2),
-    (NEWID(), 'Jazz Classics', @BandaId3),
-    (NEWID(), 'Electronic Vibes', @BandaId4);
-
 DECLARE @AlbumId1 UNIQUEIDENTIFIER = NEWID();
 DECLARE @AlbumId2 UNIQUEIDENTIFIER = NEWID();
 DECLARE @AlbumId3 UNIQUEIDENTIFIER = NEWID();
 DECLARE @AlbumId4 UNIQUEIDENTIFIER = NEWID();
 
-INSERT INTO [SpotifyDatabase].[dbo].[Album] ([Id], [Nome])
+INSERT INTO [SpotifyDatabase].[dbo].[Album] ([Id], [Nome], [BandaId], [Backdrop])
 VALUES
-    (@AlbumId1, 'Rock Album'),
-    (@AlbumId2, 'Pop Album'),
-    (@AlbumId3, 'Jazz Album'),
-    (@AlbumId4, 'Electronic Album');
+    (@AlbumId1, 'Rock Greatest Hits', @BandaId1, 'backdrop_rock_greatest_hits.jpg'),
+    (@AlbumId2, 'Pop Sensations', @BandaId2, 'backdrop_pop_sensations.jpg'),
+    (@AlbumId3, 'Jazz Classics', @BandaId3, 'backdrop_jazz_classics.jpg'),
+    (@AlbumId4, 'Electronic Vibes', @BandaId4, 'backdrop_electronic_vibes.jpg');
 
 -- Create Musicas
-INSERT INTO [SpotifyDatabase].[dbo].[Musica] ([Id], [Nome], [Duracao_Valor], [AlbumId])
+INSERT INTO [SpotifyDatabase].[dbo].[Musica] ([Id], [Nome], [Duracao_Valor], [AlbumId], [URL])
 VALUES
-    (NEWID(), 'Rock Anthem', 45, @AlbumId1),
-    (NEWID(), 'Pop Hit', 40, @AlbumId2),
-    (NEWID(), 'Smooth Jazz', 55, @AlbumId3),
-    (NEWID(), 'Electronic Groove', 30, @AlbumId4);
-
-
-
+    (NEWID(), 'Rock Anthem', 45, @AlbumId1, 'http://example.com/rock_anthem.mp3'),
+    (NEWID(), 'Pop Hit', 40, @AlbumId2, 'http://example.com/pop_hit.mp3'),
+    (NEWID(), 'Smooth Jazz', 55, @AlbumId3, 'http://example.com/smooth_jazz.mp3'),
+    (NEWID(), 'Electronic Groove', 30, @AlbumId4, 'http://example.com/electronic_groove.mp3');
 
 -- Inserir conta com perfil Admin
 INSERT INTO [SpotifyDatabase].[dbo].[ContaAdmin] ([Id], [Nome], [Email], [Senha], [PerfilTypeId], [DataCricao])
 VALUES (NEWID(), 'Admin User', 'user@admin.com', '123', 1, GETDATE());
 
 -- Inserir conta com perfil Normal
-INSERT INTO [dbo].[ContaAdmin] ([Id], [Nome], [Email], [Senha], [PerfilTypeId], [DataCricao]) 
+INSERT INTO [dbo].[ContaAdmin] ([Id], [Nome], [Email], [Senha], [PerfilTypeId], [DataCricao])
 VALUES (NEWID(), 'Normal User', 'user@normal.com', '123', 2, GETDATE());
-

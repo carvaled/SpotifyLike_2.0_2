@@ -8,7 +8,7 @@ using SpotifyLike.Repository;
 
 #nullable disable
 
-namespace SpotifyLike.Repository.Migrations
+namespace SpotifyLike.Repository.Migrations.Api
 {
     [DbContext(typeof(SpotifyLikeContext))]
     partial class SpotifyLikeContextModelSnapshot : ModelSnapshot
@@ -18,6 +18,9 @@ namespace SpotifyLike.Repository.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -163,6 +166,11 @@ namespace SpotifyLike.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Backdrop")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<Guid?>("BandaId")
                         .HasColumnType("uniqueidentifier");
 
@@ -217,6 +225,10 @@ namespace SpotifyLike.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -464,6 +476,10 @@ namespace SpotifyLike.Repository.Migrations
                         {
                             b1.Property<Guid>("TransacaoId")
                                 .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Cnpj")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Nome")
                                 .IsRequired()

@@ -4,7 +4,7 @@
 	Encryption = Mandatory -> Trusted Server Certificate
 
 # Comandos Ef API 
-dotnet ef migrations add Initial  -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
+dotnet ef migrations add Initial -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api -o Migrations.Api
 dotnet ef database update -c SpotifyLikeContext -p ./SpotifyLike.Repository/SpotifyLike.Repository.csproj -s ./SpotifyLike.Api
 
 
